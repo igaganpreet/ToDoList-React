@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 
 function App() {
-  const [inputText, setItem] = useState("");
+  const [inputText, setInputText] = useState("");
   const [itemText, setItemText] = useState([]);
 
   function handleChange(event) {
     let newValue = event.target.value;
-    setItem(newValue);
+    setInputText(newValue);
   }
   function handleClick(event) {
-    console.log("clicked");
     setItemText((prevValue) => {
       return [...prevValue, inputText];
     });
-    // console.log(itemText);
+    setInputText("");
     event.preventDefault();
   }
 
