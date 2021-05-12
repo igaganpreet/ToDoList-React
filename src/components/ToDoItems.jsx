@@ -1,22 +1,19 @@
 import React, { useState } from "react";
 
 function ToDoItems(props) {
-  const [styleDescription, updateStyle] = useState({ textDecoration: "none" });
   const [decorated, updateState] = useState(false);
   function handleClick(event) {
-    console.log("clicked");
-    if (decorated === false) {
-      updateStyle({ textDecoration: "line-through" });
-      updateState(true);
-    } else if (decorated === true) {
-      updateStyle({ textDecoration: "none" });
-      updateState(false);
-    }
+    updateState((prevValue) => {
+      return !prevValue;
+    });
   }
 
   return (
     <div>
-      <li style={styleDescription} onClick={handleClick}>
+      <li
+        style={{ textDecoration: decorated ? "line-through" : "none" }}
+        onClick={handleClick}
+      >
         {props.value}
       </li>
     </div>
