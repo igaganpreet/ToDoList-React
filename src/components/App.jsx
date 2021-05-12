@@ -17,6 +17,14 @@ function App() {
     event.preventDefault();
   }
 
+  function deleteItem(id) {
+    setItemText((prevValue) => {
+      return prevValue.filter((item, index) => {
+        return index !== id;
+      });
+    });
+  }
+
   return (
     <div className="container">
       <div className="heading">
@@ -35,8 +43,15 @@ function App() {
       </div>
       <div>
         <ul>
-          {itemText.map((item) => {
-            return <ToDoItems value={item} />;
+          {itemText.map((item, index) => {
+            return (
+              <ToDoItems
+                key={index}
+                id={index}
+                value={item}
+                onChecked={deleteItem}
+              />
+            );
           })}
         </ul>
       </div>
